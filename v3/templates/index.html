@@ -1,0 +1,1085 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+[class*="col-"] {
+  float: left;
+  padding: 15px;
+}
+
+html {
+  font-family: "Lucida Sans", sans-serif;
+}
+
+.header {
+  background-color: #9933cc;
+  color: #ffffff;
+  padding: 15px;
+}
+
+.menu ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu li {
+  padding: 8px;
+  margin-bottom: 7px;
+  background-color: #33b5e5;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.menu li:hover {
+  background-color: #0099cc;
+}
+
+.aside {
+  background-color: #33b5e5;
+  padding: 15px;
+  color: #ffffff;
+  text-align: center;
+  font-size: 14px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+
+.footer {
+  background-color: #0099cc;
+  color: #ffffff;
+  text-align: center;
+  font-size: 12px;
+  padding: 15px;
+}
+
+/* For mobile phones: */
+[class*="col-"] {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  .col-s-1 {width: 8.33%;}
+  .col-s-2 {width: 16.66%;}
+  .col-s-3 {width: 25%;}
+  .col-s-4 {width: 33.33%;}
+  .col-s-5 {width: 41.66%;}
+  .col-s-6 {width: 50%;}
+  .col-s-7 {width: 58.33%;}
+  .col-s-8 {width: 66.66%;}
+  .col-s-9 {width: 75%;}
+  .col-s-10 {width: 83.33%;}
+  .col-s-11 {width: 91.66%;}
+  .col-s-12 {width: 100%;}
+}
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  .col-1 {width: 8.33%;}
+  .col-2 {width: 16.66%;}
+  .col-3 {width: 25%;}
+  .col-4 {width: 33.33%;}
+  .col-5 {width: 41.66%;}
+  .col-6 {width: 50%;}
+  .col-7 {width: 58.33%;}
+  .col-8 {width: 66.66%;}
+  .col-9 {width: 75%;}
+  .col-10 {width: 83.33%;}
+  .col-11 {width: 91.66%;}
+  .col-12 {width: 100%;}
+}
+/* ----------------------------------------------- */
+/*                    Parameters                   */
+/* ----------------------------------------------- */
+/* --- Colors --- */
+/* --- Fonts --- */
+@font-face {
+    font-family: 'Lato';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/lato/v20/S6uyw4BMUTPHjx4wWw.ttf) format('truetype');
+  }
+  /* ----------------------------------------------- */
+  /* ----------------------------------------------- */
+  html,
+  body {
+    font-family: 'Lato', sans-serif;
+    color: #dddddd;
+    background-color: #dbe2ef;
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    /*height: 100vh;*/
+    overflow: hidden;
+  }
+  .round-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    width: 500px;
+    height: 500px;
+    border-radius: 50%;
+    background-color: #393e46;
+  }
+  .round-line {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 80%;
+    transform: translate(-50%, -50%);
+    width: 670px;
+    height: 670px;
+    border-radius: 50%;
+    border: 10px solid #00adb5;
+    animation: appear 1s 5s forwards;
+  }
+  /* --- Navigation --- */
+  .navigation-bar {
+    transition: 1s;
+    z-index: 19;
+    position: absolute;
+    right: -400px;
+    top: 0px;
+    width: 360px;
+    padding: 20px;
+    height: 100vh;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    background-color: #dbe2ef;
+  }
+  .navigation-bar .button {
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+  }
+  .navigation-bar .close-bar {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    color: #505762;
+    cursor: pointer;
+    font-size: 20px;
+  }
+  .navigation-bar .close-bar:hover {
+    color: brown;
+  }
+  .navigation-bar .select-form h1 {
+    color: #393e46;
+    text-align: center;
+    font-weight: 100;
+    padding: 20px;
+  }
+  /* --- Buttons --- */
+  .button {
+    opacity: 0;
+    position: absolute;
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background-color: #444a54;
+    animation: appear 0.8s forwards;
+    cursor: pointer;
+  }
+  .button:hover {
+    transition: 0.2s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+  .button:hover span {
+    color: #00adb5;
+  }
+  .button span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #dddddd;
+    text-transform: uppercase;
+    font-weight: 100;
+    font-size: 20px;
+  }
+  #b_1 {
+    top: -50px;
+    left: -50px;
+    animation-delay: 1s;
+  }
+  #b_2 {
+    top: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 1.5s;
+  }
+  #b_3 {
+    top: -50px;
+    right: -50px;
+    animation-delay: 2s;
+  }
+  #b_4 {
+    top: 50%;
+    right: -150px;
+    transform: translateY(-50%);
+    animation-delay: 2.5s;
+  }
+  #b_5 {
+    bottom: -50px;
+    right: -50px;
+    animation-delay: 3s;
+  }
+  #b_6 {
+    bottom: -150px;
+    left: 50%;
+    transform: translateX(-50%);
+    animation-delay: 3.5s;
+  }
+  #b_7 {
+    bottom: -50px;
+    left: -50px;
+    animation-delay: 4s;
+  }
+  #b_8 {
+    top: 50%;
+    left: -150px;
+    transform: translateY(-50%);
+    animation-delay: 4.5s;
+  }
+  /* --- Hand --- */
+  .wrapper {
+    position: absolute;
+    top: 46%;
+    left: 46%;
+    transform: translate(-46%, -46%);
+    width: 260px;
+    height: 100px;
+  }
+  .hand {
+    opacity: 0;
+    z-index: 20;
+    position: relative;
+    width: 300px;
+    height: 300px;
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 140px;
+    border-top-left-radius: 60px;
+    border-top-right-radius: 100px;
+    background-color: #eeeeee;
+    transition: width 1s, height 1s, background-color 1s, transform 1s;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+    transform: scale(0.6);
+    animation: appear 1s 0.5s forwards;
+  }
+  .hand::after {
+    content: "";
+    position: absolute;
+    bottom: 40px;
+    right: 60px;
+    width: 170px;
+    height: 200px;
+    border-bottom-left-radius: 120px;
+    border-bottom-right-radius: 140px;
+    border-top-left-radius: 40px;
+    border-top-right-radius: 80px;
+    background-color: #e6e6e6;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+  }
+  .finger {
+    position: absolute;
+    top: 0px;
+    width: 66px;
+    height: 40px;
+    background-color: transparent;
+  }
+  .proximal {
+    transition: 1s;
+    z-index: 15;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 66px;
+    height: 140px;
+    border-radius: 25px;
+    background-color: #e4e4e4;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  .middle {
+    transition: 1s;
+    z-index: 14;
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 66px;
+    height: 120px;
+    border-radius: 25px;
+    background-color: #dfdfdf;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  .distal {
+    transition: 1s;
+    z-index: 13;
+    position: absolute;
+    bottom: -5px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 66px;
+    height: 100px;
+    border-radius: 40px;
+    background-color: #dadada;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03), 0 1px 2px rgba(0, 0, 0, 0.08);
+  }
+  .phalanx-1,
+  .phalanx-2 {
+    position: absolute;
+    top: 0;
+    left: 14px;
+    width: 40px;
+    height: 40px;
+  }
+  .phalanx-2 {
+    left: 13px;
+  }
+  .finger-1 {
+    top: 180px;
+    left: -10px;
+    transform: rotate(-50deg);
+  }
+  .finger-1 .proximal {
+    height: 120px;
+    background-color: #dfdfdf;
+  }
+  .finger-1 .middle {
+    height: 120px;
+    border-radius: 40px;
+    background-color: #d5d5d5;
+  }
+  .finger-1 .distal {
+    display: none;
+  }
+  .finger-1 .phalanx-1 {
+    transition: 1s;
+    transform: rotate(20deg);
+  }
+  .finger-2 {
+    top: 20px;
+    left: 0px;
+  }
+  .finger-3 {
+    left: 78px;
+    /* finger (66) + padding (12) */
+  }
+  .finger-3 .proximal {
+    height: 150px;
+  }
+  .finger-3 .middle {
+    height: 130px;
+  }
+  .finger-3 .distal {
+    height: 110px;
+  }
+  .finger-4 {
+    left: 156px;
+  }
+  .finger-5 {
+    top: 50px;
+    left: 234px;
+  }
+  .finger-5 .proximal {
+    height: 120px;
+  }
+  .finger-5 .middle {
+    height: 100px;
+  }
+  .finger-5 .distal {
+    height: 90px;
+  }
+  /* --- Modifier --- */
+  .rotate-90 {
+    transform-origin: center center;
+    transform: rotate(90deg);
+  }
+  .move-left {
+    transform: rotate(-15deg);
+    transition: transform 1s;
+  }
+  .move-right {
+    transform: rotate(15deg);
+    transition: transform 1s;
+  }
+  .tight {
+    transition: 1s;
+    top: -50px;
+  }
+  .tight .proximal {
+    transition: 1s;
+    height: 0;
+  }
+  .tight .middle {
+    transition: 1s;
+    height: 0;
+  }
+  .tight .distal {
+    display: block;
+  }
+  #f_1.tight {
+    top: 180px;
+    left: 0;
+  }
+  #f_1.tight .proximal {
+    height: 140px;
+  }
+  #f_1.tight .middle {
+    height: 120px;
+  }
+  #f_1.tight .distal {
+    display: none;
+  }
+  #f_1.tight .phalanx-1 {
+    transition: 1s;
+    transform: rotate(85deg);
+  }
+  #f_5.tight {
+    top: -30px;
+  }
+  /* ----------------------------------------------- */
+  /*                   Keyframes                     */
+  /* ----------------------------------------------- */
+  @keyframes appear {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
+  /* ----------------------------------------------- */
+  /* ----------------------------------------------- */
+  /* --- Nice Select from : https://codepen.io/pavelvaravko/pen/qjojOr --- */
+  .select {
+    position: relative;
+    width: 350px;
+    margin-bottom: 5vh;
+  }
+  .select-text {
+    position: relative;
+    font-family: inherit;
+    background-color: transparent;
+    width: 350px;
+    padding: 10px 10px 10px 0;
+    font-size: 18px;
+    border-radius: 0;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+  }
+  /* Remove focus */
+  .select-text:focus {
+    outline: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0);
+  }
+  /* Use custom arrow */
+  .select .select-text {
+    appearance: none;
+    -webkit-appearance: none;
+  }
+  .select:after {
+    position: absolute;
+    top: 18px;
+    right: 10px;
+    /* Styling the down arrow */
+    width: 0;
+    height: 0;
+    padding: 0;
+    content: '';
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: 6px solid rgba(0, 0, 0, 0.12);
+    pointer-events: none;
+  }
+  /* LABEL ======================================= */
+  .select-label {
+    color: rgba(0, 0, 0, 0.26);
+    font-size: 18px;
+    font-weight: normal;
+    position: absolute;
+    pointer-events: none;
+    left: 0;
+    top: 10px;
+    transition: 0.2s ease all;
+  }
+  /* active state */
+  .select-text:focus ~ .select-label,
+  .select-text:valid ~ .select-label {
+    color: #00adb5;
+    top: -20px;
+    transition: 0.2s ease all;
+    font-size: 14px;
+  }
+  /* BOTTOM BARS ================================= */
+  .select-bar {
+    position: relative;
+    display: block;
+    width: 350px;
+  }
+  .select-bar:before,
+  .select-bar:after {
+    content: '';
+    height: 2px;
+    width: 0;
+    bottom: 1px;
+    position: absolute;
+    background: #00adb5;
+    transition: 0.2s ease all;
+  }
+  .select-bar:before {
+    left: 50%;
+  }
+  .select-bar:after {
+    right: 50%;
+  }
+  /* active state */
+  .select-text:focus ~ .select-bar:before,
+  .select-text:focus ~ .select-bar:after {
+    width: 50%;
+  }
+  /* HIGHLIGHTER ================================== */
+  .select-highlight {
+    position: absolute;
+    height: 60%;
+    width: 100px;
+    top: 25%;
+    left: 0;
+    pointer-events: none;
+    opacity: 0.5;
+  }
+</style>
+
+</head>
+<body>
+
+<div class="row">
+  <div class="col-4 col-s-8 menu">
+   
+        <canvas id="canvas1"></canvas>
+        <canvas id="canvas2"></canvas>
+        <canvas id="canvas3"></canvas>
+        
+      
+    
+  </div>
+
+  <div class="col-4 col-s-8 menu">
+        <canvas id="canvas4"></canvas>
+        <canvas id="canvas5"></canvas>
+        <canvas id="canvas6"></canvas>
+       
+      
+    
+  </div>
+
+
+  <div class="col-4 col-s-8 menu">
+    <canvas id="canvas7"></canvas>
+    <canvas id="canvas8"></canvas>
+    
+  
+
+</div>
+</div>
+
+<div class="footer">
+  <p>Resize the browser window to see how the content respond to the resizing.</p>
+</div>
+
+<!--suppress JSUnresolvedLibraryURL -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+<!--suppress JSUnresolvedLibraryURL -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<!--suppress JSUnresolvedLibraryURL -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js"></script>
+
+<script>
+    $(document).ready(function () {
+      //c1
+        const config = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+       //c2
+        const config2 = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+       //c3
+        const config3 = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+       //c4
+       const config4 = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+        //c5
+        const config5 = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+         //c6
+        const config6 = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+        //c7
+        const config7 = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+       //c8
+       const config8 = {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: "Random Dataset",
+                    backgroundColor: 'rgb(255, 99, 132)',
+                    borderColor: 'rgb(255, 99, 132)',
+                    data: [],
+                    fill: false,
+                }],
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Creating Real-Time Charts with Flask'
+                },
+                tooltips: {
+                    mode: 'index',
+                    intersect: false,
+                },
+                hover: {
+                    mode: 'nearest',
+                    intersect: true
+                },
+                scales: {
+                    xAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Time'
+                        }
+                    }],
+                    yAxes: [{
+                        display: true,
+                        scaleLabel: {
+                            display: true,
+                            labelString: 'Value'
+                        }
+                    }]
+                }
+            }
+        };
+       
+        const context1 = document.getElementById('canvas1').getContext('2d');
+        const context2 = document.getElementById('canvas2').getContext('2d');
+        const context3 = document.getElementById('canvas3').getContext('2d');
+        const context4 = document.getElementById('canvas4').getContext('2d');
+        const context5 = document.getElementById('canvas5').getContext('2d');
+        const context6 = document.getElementById('canvas6').getContext('2d');
+        const context7 = document.getElementById('canvas7').getContext('2d');
+        const context8 = document.getElementById('canvas8').getContext('2d');
+
+
+        const lineChart1 = new Chart(context1, config);
+        const lineChart2 = new Chart(context2, config2);
+        const lineChart3 = new Chart(context3, config3);
+        const lineChart4 = new Chart(context4, config4);
+
+        const lineChart5 = new Chart(context5, config5);
+        const lineChart6 = new Chart(context6, config6);
+        const lineChart7 = new Chart(context7, config7);
+        const lineChart8 = new Chart(context8, config8);
+
+
+        const source = new EventSource("/chart-data");
+        
+
+        source.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+         //c1
+            if (config.data.labels.length === 50) {
+                config.data.labels.shift();
+                config.data.datasets[0].data.shift();
+            }
+           //c2 
+            if (config2.data.labels.length === 50) {
+                config2.data.labels.shift();
+                config2.data.datasets[0].data.shift();
+            }
+           //c3
+            if (config3.data.labels.length === 50) {
+                config3.data.labels.shift();
+                config3.data.datasets[0].data.shift();
+            }
+           //c4
+            if (config4.data.labels.length === 50) {
+                config4.data.labels.shift();
+                config4.data.datasets[0].data.shift();
+            }
+            //c5
+            if (config5.data.labels.length === 50) {
+                config5.data.labels.shift();
+                config5.data.datasets[0].data.shift();
+            }
+            //c6
+            if (config6.data.labels.length === 50) {
+                config6.data.labels.shift();
+                config6.data.datasets[0].data.shift();
+            }
+            //c7
+            if (config7.data.labels.length ===50) {
+                config7.data.labels.shift();
+                config7.data.datasets[0].data.shift();
+            }
+            //8
+            if (config8.data.labels.length === 50) {
+                config8.data.labels.shift();
+                config8.data.datasets[0].data.shift();
+            }
+            
+
+          
+
+
+//c1
+            config.data.labels.push(data.time);
+            config.data.datasets[0].data.push(data.v1);
+//c2
+            config2.data.labels.push(data.time);
+            config2.data.datasets[0].data.push(data.v2);
+//c3
+            config3.data.labels.push(data.time);
+            config3.data.datasets[0].data.push(data.v3);
+//c4
+            config4.data.labels.push(data.time);
+            config4.data.datasets[0].data.push(data.v4);
+//c5
+            config5.data.labels.push(data.time);
+            config5.data.datasets[0].data.push(data.v5);
+//c6
+            config6.data.labels.push(data.time);
+            config6.data.datasets[0].data.push(data.v6);  
+//c7
+            config7.data.labels.push(data.time);
+            config7.data.datasets[0].data.push(data.v7);
+//c8
+            config8.data.labels.push(data.time);
+            config8.data.datasets[0].data.push(data.v8);
+
+            lineChart1.update();
+            lineChart2.update();
+            lineChart3.update();
+            lineChart4.update();
+            lineChart5.update();
+            lineChart6.update();
+            lineChart7.update();
+            lineChart8.update();
+        }
+     
+    });
+     
+</script>
+
+</body>
+</html>
+
+
